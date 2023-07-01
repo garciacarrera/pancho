@@ -25,6 +25,16 @@ ngOnInit(): void{
     quantity:1,
     completed: true 
   },
+  {
+    id: 2,
+    title: 'cono de papa',
+    price: 600,
+    quantity:1,
+    completed: false 
+  },
  ];
+}
+deleteItem(item:Item){
+  this.items=this.items.filter(x=> x.id != item.id)
 }
 }
