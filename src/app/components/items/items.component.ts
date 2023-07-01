@@ -8,13 +8,16 @@ import {  Item } from "../../models/items";
 
 export class ItemsComponent {
 items: Item[]=[];
+total:number=0;
+
 constructor(){}
 ngOnInit(): void{
+
  this.items=[
   {
     id: 0,
     title: 'pancho ',
-    price: 550,
+    price: 1000,
     quantity:1,
     completed: false
   },
@@ -28,13 +31,26 @@ ngOnInit(): void{
   {
     id: 2,
     title: 'cono de papa',
-    price: 600,
+    price: 100,
     quantity:1,
     completed: false 
   },
  ];
+ this.getTotal();
 }
 deleteItem(item:Item){
   this.items=this.items.filter(x=> x.id != item.id)
+  this.getTotal();
+}
+toggleItem(item:Item){
+  this.getTotal()
+}
+getTotal(){
+ this.total = this.items
+          .filter(item=> !item.completed)
+          .map(item=>item.quantity *item.price)
+          .reduce((acc,item)=>acc +=item, 0);
+  
+
 }
 }
